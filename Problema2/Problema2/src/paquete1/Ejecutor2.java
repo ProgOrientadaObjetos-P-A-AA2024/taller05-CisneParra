@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package paquete1;
 
@@ -11,24 +11,19 @@ import java.util.Scanner;
  *
  * @author natsu
  */
-public class Ejecutor {
+public class Ejecutor2 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        int opcion;
+        String opcion;
         String ced;
         String marca;
         int year;
         double valor;
         String cadenaF = "Informe de matriculas de auto\n"
                 + "---------------------------------------------------------\n";
-        System.out.println("Cuantas matriculas desea ingresar?");
-        opcion = entrada.nextInt();
-        for (int i = 0; i < opcion; i++) {
-            entrada.nextLine();
+        boolean bandera = true;
+        do {
             System.out.println("Ingrese la cedula del propietario");
             ced = entrada.nextLine();
             System.out.println("Ingrese la marca del vehiculo");
@@ -37,6 +32,7 @@ public class Ejecutor {
             year = entrada.nextInt();
             System.out.println("Ingrese el valor del vehiculo");
             valor = entrada.nextInt();
+            entrada.nextLine();
             Matriculas m = new Matriculas(ced, marca, year, valor);
             m.establecervalorMatricula();
             cadenaF = String.format("%s\n"
@@ -48,8 +44,13 @@ public class Ejecutor {
                     + "-------------------------------------------------------\n",
                     cadenaF, m.obtenerCedula(), m.obtenerMarca(), m.obtenerYear(),
                     m.obtenervalorAuto(), m.obtenervalorMatricula());
-        }
+            System.out.println("Ingrese n para"
+                    + " salir");
+            opcion = entrada.nextLine();
+            if (opcion.equals("n")) {
+                bandera = false;
+            }
+        } while (bandera);
         System.out.printf("%s\n", cadenaF);
     }
-
 }
